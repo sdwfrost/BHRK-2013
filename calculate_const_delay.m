@@ -15,9 +15,9 @@ Q_post = m.input_params(beta/(m.N-1)*(1-tau)*(1-rho),sigma,gamma,0);
 
 % calculate R* and check it's greater than 1
 
-part1 = expokit.phiv(delay,Q_pre(m.Cind,m.Cind),u,v);
+part1 = phiv(delay,Q_pre(m.Cind,m.Cind),u,v);
 
-init_second = expokit.mexpv(delay,Q_pre',m.init_cond);
+init_second = mexpv(delay,Q_pre',m.init_cond);
 init_second =  init_second(m.Cind);
 
 f = -m.totI(m.Cind)*alpha*(1-tau); % post admin, alpha is also reduced
@@ -41,9 +41,9 @@ end
         
         part1_mat = Q_pre(m.Cind,m.Cind)-id*r;
         
-        part1 = expokit.phiv(delay,part1_mat,u,v);
+        part1 = phiv(delay,part1_mat,u,v);
         
-        init_second = expokit.mexpv(delay,Q_pre',m.init_cond);
+        init_second = mexpv(delay,Q_pre',m.init_cond);
         init_second =  init_second(m.Cind);
         
         part2_mat = Q_post(m.Cind,m.Cind)-id*r;

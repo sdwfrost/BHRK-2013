@@ -35,9 +35,9 @@ for ii=1:Nmax
     Q_pre = m(ii).input_params(beta_vec(ii),sigma,gamma,0);
     Q_post = m(ii).input_params(beta_vec(ii)*(1-tau)*(1-rho),sigma,gamma,0);
     
-    part1 = expokit.phiv(delay,Q_pre(m(ii).Cind,m(ii).Cind),u,v);
+    part1 = phiv(delay,Q_pre(m(ii).Cind,m(ii).Cind),u,v);
     
-    init_second = expokit.mexpv(delay,Q_pre',m(ii).init_cond);
+    init_second = mexpv(delay,Q_pre',m(ii).init_cond);
     init_second =  init_second(m(ii).Cind);
     
     f = -m(ii).totI(m(ii).Cind)*alpha*(1-tau); % post admin, alpha is also reduced
@@ -74,9 +74,9 @@ end
             
             part1_mat = Q_pre(m(jj).Cind,m(jj).Cind)-id*r;
             
-            part1 = expokit.phiv(delay,part1_mat,u,v);
+            part1 = phiv(delay,part1_mat,u,v);
             
-            init_second = expokit.mexpv(delay,Q_pre',m(jj).init_cond);
+            init_second = mexpv(delay,Q_pre',m(jj).init_cond);
             init_second =  init_second(m(jj).Cind);
             
             part2_mat = Q_post(m(jj).Cind,m(jj).Cind)-id*r;
